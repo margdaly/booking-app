@@ -4,4 +4,4 @@
 ![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white) 
 [Golang Tutorial for Beginners](https://www.youtube.com/watch?v=yyUHQIec83I)
 
-Current Video Time: 30:15
+Current Video Time: 1:07:24 * Arrays & Slices
