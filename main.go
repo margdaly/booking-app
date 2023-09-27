@@ -8,6 +8,8 @@ func main() {
 	const conferenceTickets = 50
 	var remainingTickets uint = 50 
 	// uint is an unsigned integer, cannot be negative
+	var bookings = [50]string{}
+	// array with fixed size of 50 elements and type of string
 
 	fmt.Printf("Welcome to %v booking app!\n", conferenceName)
 	fmt.Printf("Total tickets available ** %v ** and only ~ %v ~ tickets left!\n", conferenceTickets, remainingTickets)
@@ -31,7 +33,11 @@ func main() {
 	fmt.Println("How many tickets would you like to book?")
 	fmt.Scan(&userTickets)
 
+	remainingTickets = remainingTickets - userTickets
+	bookings[0] = firstName + " " + lastName
+
 	fmt.Printf("Thank you %v %v for booking %v tickets with us!\n", firstName, lastName,userTickets)
 	fmt.Printf("An email confirmation has been sent to %v.\n", email)
 
+	fmt.Printf("Total tickets available ** %v ** and only ~ %v ~ tickets left!\n", conferenceTickets, remainingTickets)
 }
