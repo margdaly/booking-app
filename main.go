@@ -41,9 +41,13 @@ func main() {
 		fmt.Println("How many tickets would you like to book?")
 		fmt.Scan(&userTickets)
 
+		if userTickets > remainingTickets {
+			fmt.Printf("Sorry, we only have %v tickets left, so you can't book %v tickets.\n", remainingTickets, userTickets)
+			continue // continue will skip the rest of the loop and start again
+		}
+
 		remainingTickets = remainingTickets - userTickets
-		bookings = append(bookings, firstName + " " + lastName)
-		// append is a built-in function to add elements to a slice
+		bookings = append(bookings, firstName + " " + lastName) // append is a built-in function to add elements to a slice
 
 		fmt.Printf("Thank you %v %v for booking %v tickets with us!\n", firstName, lastName,userTickets)
 		fmt.Printf("An email confirmation has been sent to %v.\n", email)
