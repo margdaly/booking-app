@@ -41,31 +41,32 @@ func main() {
 		fmt.Println("How many tickets would you like to book?")
 		fmt.Scan(&userTickets)
 
-		if userTickets > remainingTickets {
-			fmt.Printf("Sorry, we only have %v tickets left, so you can't book %v tickets.\n", remainingTickets, userTickets)
-			continue // continue will skip the rest of the loop and start again
-		}
+		// check if there are enough tickets left
+		if userTickets <= remainingTickets {
+			remainingTickets = remainingTickets - userTickets
+			bookings = append(bookings, firstName + " " + lastName) // append is a built-in function to add elements to a slice
 
-		remainingTickets = remainingTickets - userTickets
-		bookings = append(bookings, firstName + " " + lastName) // append is a built-in function to add elements to a slice
+			fmt.Printf("Thank you %v %v for booking %v tickets with us!\n", firstName, lastName,userTickets)
+			fmt.Printf("An email confirmation has been sent to %v.\n", email)
 
-		fmt.Printf("Thank you %v %v for booking %v tickets with us!\n", firstName, lastName,userTickets)
-		fmt.Printf("An email confirmation has been sent to %v.\n", email)
+			fmt.Printf("\nTotal tickets available ** %v ** and only ~ %v ~ tickets left!\n", conferenceTickets, remainingTickets)
 
-		fmt.Printf("\nTotal tickets available ** %v ** and only ~ %v ~ tickets left!\n", conferenceTickets, remainingTickets)
+			firstNames := []string{}
+			for _, booking := range bookings {
+				var names = strings.Fields(booking)
+				firstNames = append(firstNames, names[0])
+			}
+			fmt.Printf("People with bookings so far: %v\n", firstNames)
 
-		firstNames := []string{}
-		for _, booking := range bookings {
-			var names = strings.Fields(booking)
-			firstNames = append(firstNames, names[0])
-		}
-		fmt.Printf("People with bookings so far: %v\n", firstNames)
-
-		if remainingTickets == 0 {
-			// break out of the loop if there are no more tickets left
-			fmt.Println("Sorry, we are sold out!")
-			break
-		}
+			if remainingTickets == 0 {
+				// break out of the loop if there are no more tickets left
+				fmt.Println("Sorry, we are sold out!")
+				break
+			} 
+			} else {
+				fmt.Printf("Sorry, we only have %v tickets left, so you can't book %v tickets.\n", remainingTickets, userTickets)
+				continue // continue will skip the rest of the loop and start again
+			}
 	}
 
 }
