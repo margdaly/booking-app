@@ -21,39 +21,47 @@ func main() {
 	fmt.Printf("Total tickets available ** %v ** and only ~ %v ~ tickets left!\n", conferenceTickets, remainingTickets)
 	fmt.Println("Get Your Tickets Now!")	
 
-	var firstName string
-	var lastName string
-	var email string
-	var userTickets uint
-	
-	// ask user for their name, email and ticket amount
-	// Scan is a blocking function, it will wait for user input
-	fmt.Println("Please enter your first name:")
-	fmt.Scan(&firstName)
+	for {
+		var firstName string
+		var lastName string
+		var email string
+		var userTickets uint
+		
+		// ask user for their name, email and ticket amount
+		// Scan is a blocking function, it will wait for user input
+		fmt.Println("Please enter your first name:")
+		fmt.Scan(&firstName)
 
-	fmt.Println("Please enter your last name:")
-	fmt.Scan(&lastName)
+		fmt.Println("Please enter your last name:")
+		fmt.Scan(&lastName)
 
-	fmt.Println("Please enter your email address:")
-	fmt.Scan(&email)
+		fmt.Println("Please enter your email address:")
+		fmt.Scan(&email)
 
-	fmt.Println("How many tickets would you like to book?")
-	fmt.Scan(&userTickets)
+		fmt.Println("How many tickets would you like to book?")
+		fmt.Scan(&userTickets)
 
-	remainingTickets = remainingTickets - userTickets
-	bookings = append(bookings, firstName + " " + lastName)
-	// append is a built-in function to add elements to a slice
+		remainingTickets = remainingTickets - userTickets
+		bookings = append(bookings, firstName + " " + lastName)
+		// append is a built-in function to add elements to a slice
 
-	fmt.Printf("Thank you %v %v for booking %v tickets with us!\n", firstName, lastName,userTickets)
-	fmt.Printf("An email confirmation has been sent to %v.\n", email)
+		fmt.Printf("Thank you %v %v for booking %v tickets with us!\n", firstName, lastName,userTickets)
+		fmt.Printf("An email confirmation has been sent to %v.\n", email)
 
-	fmt.Printf("\nTotal tickets available ** %v ** and only ~ %v ~ tickets left!\n", conferenceTickets, remainingTickets)
+		fmt.Printf("\nTotal tickets available ** %v ** and only ~ %v ~ tickets left!\n", conferenceTickets, remainingTickets)
 
-	firstNames := []string{}
-	for _, booking := range bookings {
-		var names = strings.Fields(booking)
-		firstNames = append(firstNames, names[0])
+		firstNames := []string{}
+		for _, booking := range bookings {
+			var names = strings.Fields(booking)
+			firstNames = append(firstNames, names[0])
+		}
+		fmt.Printf("People with bookings so far: %v\n", firstNames)
+
+		if remainingTickets == 0 {
+			// break out of the loop if there are no more tickets left
+			fmt.Println("Sorry, we are sold out!")
+			break
+		}
 	}
-	fmt.Printf("People with bookings so far: %v\n", firstNames)
 
 }
