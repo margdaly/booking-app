@@ -8,7 +8,10 @@ func main() {
 	const conferenceTickets = 50
 	var remainingTickets uint = 50 
 	// uint is an unsigned integer, cannot be negative
-	var bookings = [50]string{}
+	var bookings []string
+	// Slice of strings, dynamic in size
+
+	// var bookings = [50]string{}
 	// array with fixed size of 50 elements and type of string
 
 	fmt.Printf("Welcome to %v booking app!\n", conferenceName)
@@ -19,8 +22,9 @@ func main() {
 	var lastName string
 	var email string
 	var userTickets uint
-	// ask user for their name
-
+	
+	// ask user for their name, email and ticket amount
+	// Scan is a blocking function, it will wait for user input
 	fmt.Println("Please enter your first name:")
 	fmt.Scan(&firstName)
 
@@ -34,10 +38,14 @@ func main() {
 	fmt.Scan(&userTickets)
 
 	remainingTickets = remainingTickets - userTickets
-	bookings[0] = firstName + " " + lastName
+	bookings = append(bookings, firstName + " " + lastName)
+	// append is a built-in function to add elements to a slice
 
 	fmt.Printf("Thank you %v %v for booking %v tickets with us!\n", firstName, lastName,userTickets)
 	fmt.Printf("An email confirmation has been sent to %v.\n", email)
 
-	fmt.Printf("Total tickets available ** %v ** and only ~ %v ~ tickets left!\n", conferenceTickets, remainingTickets)
+	fmt.Printf("\nTotal tickets available ** %v ** and only ~ %v ~ tickets left!\n", conferenceTickets, remainingTickets)
+
+	fmt.Printf("Bookings so far: %v\n", bookings)
+
 }
